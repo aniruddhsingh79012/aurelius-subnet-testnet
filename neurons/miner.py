@@ -20,6 +20,11 @@
 import time
 import typing
 import bittensor as bt
+from app import Worker
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 
 # Bittensor Miner Template:
 import template
@@ -39,6 +44,7 @@ class Miner(BaseMinerNeuron):
 
     def __init__(self, config=None):
         super(Miner, self).__init__(config=config)
+        self.worker = Worker(os.getenv("WORKER_URL"), os.getenv("WORKER_PORT"))
 
         # TODO(developer): Anything specific to your use case you can do here
 
